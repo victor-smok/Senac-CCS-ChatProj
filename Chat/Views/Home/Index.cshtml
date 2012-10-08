@@ -1,0 +1,55 @@
+﻿@model DemoChat.Models.Home
+@{
+    ViewBag.Title = "Home do Chat";
+}
+<h2>
+    Chat .Net</h2> 
+    <br />
+    Selecione seu Avatar: <br />
+    <table border="0">
+    <tr>
+    <td>
+        <p>  
+            <input type="radio" value="../../Avatar/person(1).png" name="txtavatar" id="txtavatar"/> <img src="../../Avatar/person(1).png" /> <br />          
+            <input type="radio" value="../../Avatar/person(2).png" name="txtavatar" id="txtavatar2"/> <img src="../../Avatar/person(2).png" /> <br />
+            <input type="radio" value="../../Avatar/person(3).png" name="txtavatar" id="txtavatar3"/> <img src="../../Avatar/person(3).png" /> <br />
+            <input type="radio" value="../../Avatar/person(4).png" name="txtavatar" id="txtavatar4"/> <img src="../../Avatar/person(4).png" /> <br />
+            <input type="radio" value="../../Avatar/person(5).png" name="txtavatar" id="txtavatar5"/> <img src="../../Avatar/person(5).png" /> <br />
+        </p>
+    </td>
+    <td>
+        <p>
+            <input type="radio" value="../../Avatar/person(6).png" name="txtavatar" id="txtavatar6"/> <img src="../../Avatar/person(6).png" /> <br />
+            <input type="radio" value="../../Avatar/person(7).png" name="txtavatar" id="txtavatar7"/> <img src="../../Avatar/person(7).png" /> <br />
+            <input type="radio" value="../../Avatar/person(8).png" name="txtavatar" id="txtavatar8"/> <img src="../../Avatar/person(8).png" /> <br />
+            <input type="radio" value="../../Avatar/person(9).png" name="txtavatar" id="txtavatar9"/> <img src="../../Avatar/person(9).png" /> <br />
+            <input type="radio" value="../../Avatar/person(10).png" name="txtavatar" id="txtavatar10"/> <img src="../../Avatar/person(10).png" /> <br />
+        </p>    
+    </td>
+    </tr>
+    </table>
+<p>
+    Nome: <br /><input type="text" name="txtNome" id="txtNome" />
+</p>
+
+<ul id="chatList">
+    @foreach (var msg in Model.Mensagens)
+    { 
+        <li>
+            <p style="margin-bottom: -2px; color: black;"> 
+            <strong>@msg.Usuario.Nome</strong> <img src=@msg.Usuario.avatar /> :  @msg.Conteudo</p>
+        </li>
+    }
+</ul>
+<!-- jQuery Template novas mensagens -->
+<script id="msgTmpl" type="text/x-jquery-tmpl">
+    <li><p style="margin-bottom:-2px; color: black;"><strong>${Usuario.Nome}</strong> <img src=${Usuario.avatar} /> : ${Conteudo}</p></li>
+</script>
+<p>
+    Mensagem:<br />
+    <input type="text" name="txtMensagem" id="txtMensagem" />
+    <input id="btnEnviar" type="submit" value="enviar" /><br />
+</p>
+<script src="@Url.Content("~/Scripts/jquery.tmpl.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/chat.js")" type="text/javascript"></script>
+
