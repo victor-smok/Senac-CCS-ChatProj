@@ -64,7 +64,7 @@ public static void AddMensagem(string avatar, string nome, string mensagem)
                     {
                         Id = currMsgId++,
                         Conteudo = mensagem,
-                        Data = DateTime.Now,
+                        Data = DateTime.Now.ToString("hh:mm:ss"),
                         Usuario = new Usuario
                                         {
                                             avatar = avatar,

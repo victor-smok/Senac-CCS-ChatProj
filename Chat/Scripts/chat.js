@@ -17,7 +17,7 @@
             xavatar = document.getElementsByName("txtavatar")[3].value;
 
         if (document.getElementsByName("txtavatar")[4].checked)
-            xavatar = $('#txtavatar4').val();
+            xavatar = document.getElementsByName("txtavatar")[4].value;
 
         if (document.getElementsByName("txtavatar")[5].checked)
             xavatar = document.getElementsByName("txtavatar")[5].value;
@@ -33,12 +33,12 @@
 
         if (document.getElementsByName("txtavatar")[9].checked)
             xavatar = document.getElementsByName("txtavatar")[9].value;
-        
+
 
         var msgVal = $('#txtMensagem').val();
 
         $('#txtMensagem').val('');
-        $.post("/Chat/New", {  avatar: xavatar, nome: $('#txtNome').val(), msg: msgVal }, function (data, s) {
+        $.post("/Chat/New", { avatar: xavatar, nome: $('#txtNome').val(), msg: msgVal }, function (data, s) {
             if (data.d) {
                 //mensagem adicionada
             }

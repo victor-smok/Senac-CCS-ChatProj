@@ -10,7 +10,7 @@
     <tr>
     <td>
         <p>  
-            <input type="radio" value="../../Avatar/person(1).png" name="txtavatar" id="txtavatar"/> <img src="../../Avatar/person(1).png" /> <br />          
+            <input type="radio" value="../../Avatar/person(1).png" name="txtavatar" id="txtavatar1"/> <img src="../../Avatar/person(1).png" /> <br />          
             <input type="radio" value="../../Avatar/person(2).png" name="txtavatar" id="txtavatar2"/> <img src="../../Avatar/person(2).png" /> <br />
             <input type="radio" value="../../Avatar/person(3).png" name="txtavatar" id="txtavatar3"/> <img src="../../Avatar/person(3).png" /> <br />
             <input type="radio" value="../../Avatar/person(4).png" name="txtavatar" id="txtavatar4"/> <img src="../../Avatar/person(4).png" /> <br />
@@ -37,13 +37,13 @@
     { 
         <li>
             <p style="margin-bottom: -2px; color: black;"> 
-            <strong>@msg.Usuario.Nome</strong> <img src=@msg.Usuario.avatar /> :  @msg.Conteudo</p>
+            (@msg.Data) <strong><img src=@msg.Usuario.avatar /> @msg.Usuario.Nome</strong> :  @msg.Conteudo</p>
         </li>
     }
 </ul>
 <!-- jQuery Template novas mensagens -->
 <script id="msgTmpl" type="text/x-jquery-tmpl">
-    <li><p style="margin-bottom:-2px; color: black;"><strong>${Usuario.Nome}</strong> <img src=${Usuario.avatar} /> : ${Conteudo}</p></li>
+    <li><p style="margin-bottom:-2px; color: black;">(${Data}) <strong> <img src=${Usuario.avatar} /> ${Usuario.Nome}</strong> : ${Conteudo}</p></li>
 </script>
 <p>
     Mensagem:<br />
