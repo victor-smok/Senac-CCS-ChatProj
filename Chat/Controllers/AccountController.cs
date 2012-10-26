@@ -39,25 +39,25 @@ namespace DemoChat.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (MembershipService.ValidateUser(model.UserName, model.Password))
+                // Utilizando o Modo LoOnModel com a camada do Entity
+                usersEntities context = new usersEntities();
+                var usuario = context.usuarios.Where(c => c.userName == model.UserName && c.password == model.Password).FirstOrDefault();
+
+                if (usuario != null)
                 {
-                    FormsService.SignIn(model.UserName, model.RememberMe);
-                    if (Url.IsLocalUrl(returnUrl))
-                    {
-                        return Redirect(returnUrl);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                    Session["Usuario"] = usuario.userName;
+
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+
+                    ModelState.AddModelError(string.Empty, "Usuario ou senha incorreto.");
+                    //return RedirectToAction("LogOn", "Account");
+                    //throw new Exception("Usuario ou senha incorreto");
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
@@ -78,7 +78,6 @@ namespace DemoChat.Controllers
 
         public ActionResult Register()
         {
-            ViewBag.PasswordLength = MembershipService.MinPasswordLength;
             return View();
         }
 
@@ -87,22 +86,29 @@ namespace DemoChat.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Attempt to register the user
-                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, model.Email);
-
-                if (createStatus == MembershipCreateStatus.Success)
-                {
-                    FormsService.SignIn(model.UserName, false /* createPersistentCookie */);
-                    return RedirectToAction("Index", "Home");
+                // Registrar usuários
+                usersEntities context = new usersEntities();
+                var usuario = context.usuarios.Where(c => c.userName == model.UserName).FirstOrDefault();
+                
+                // Se o usuário a ser cadastrado for diferente
+                if (usuario == null)
+                {                   
+                    usuarios cadUser = new usuarios();
+                    cadUser.userName = model.UserName;
+                    cadUser.password = model.Password;
+                    cadUser.email = model.Email;
+                    cadUser.dataCadastro = DateTime.Now;
+                    context.AddTousuarios(cadUser);
+                    context.SaveChanges();
+                    
+                    return RedirectToAction("LogOn", "Account");
                 }
                 else
                 {
-                    ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
+                    ModelState.AddModelError(string.Empty, "Usuário já existe");
+                    //return RedirectToAction("Register", "Account");
                 }
             }
-
-            // If we got this far, something failed, redisplay form
-            ViewBag.PasswordLength = MembershipService.MinPasswordLength;
             return View(model);
         }
 

@@ -10,7 +10,8 @@ public class HomeController : Controller
     {
         var viewHome = new Home()
         {
-            Mensagens = ChatServer.GetHistorico()
+            Mensagens = ChatServer.GetHistorico(),
+            //usuarioLogado = Session["usuario"] != null? Session["usuario"].ToString() : string.Empty
         };
 
         return View(viewHome);

@@ -8,5 +8,6 @@ namespace DemoChat.Models
     public class Home
     {
         public List<Mensagem> Mensagens { get; set; }
+        //public string usuarioLogado { get; set; }
     }
 }

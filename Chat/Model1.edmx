@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="usersModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="usersModelStoreContainer">
+          <EntitySet Name="usuarios" EntityType="usersModel.Store.usuarios" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="iduser" />
+          </Key>
+          <Property Name="iduser" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="userName" Type="varchar" MaxLength="100" />
+          <Property Name="password" Type="nchar" MaxLength="10" />
+          <Property Name="email" Type="nchar" MaxLength="10" />
+          <Property Name="dataCadastro" Type="datetime" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="usersModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="usersEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="usuarios" EntityType="usersModel.usuarios" />
+        </EntityContainer>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="iduser" />
+          </Key>
+          <Property Name="iduser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userName" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="password" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="email" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="dataCadastro" Type="DateTime" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="usersModelStoreContainer" CdmEntityContainer="usersEntities">
+          <EntitySetMapping Name="usuarios"><EntityTypeMapping TypeName="usersModel.usuarios"><MappingFragment StoreEntitySet="usuarios">
+            <ScalarProperty Name="iduser" ColumnName="iduser" />
+            <ScalarProperty Name="userName" ColumnName="userName" />
+            <ScalarProperty Name="password" ColumnName="password" />
+            <ScalarProperty Name="email" ColumnName="email" />
+            <ScalarProperty Name="dataCadastro" ColumnName="dataCadastro" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="usersModel.usuarios" Width="1.5" PointX="0.75" PointY="0.75" Height="1.9802864583333331" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

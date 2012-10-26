@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Web;
 
 public class ChatServer
 {
@@ -76,9 +77,24 @@ public static void AddMensagem(string avatar, string nome, string mensagem)
 
     public static List<Mensagem> GetHistorico()
     {
+
+
         var msgs = new List<Mensagem>();
         lock (_historicoLock)
             msgs = _historico.ToList();
+
+        /*if (HttpContext.Current.Session["usuario"] != null)
+        {
+            var username = HttpContext.Current.Session["usuario"].ToString();
+            var conteudo = username + " acaba de entrar na sala!";
+            long idMsg = new Random().Next();
+            long idUser = new Random().Next();
+            var usuario = new Usuario() {avatar = "../../Avatar/person(10).png", Id = idUser, Nome = "SYSTEM"};
+
+            msgs.Add(new Mensagem() { Conteudo = conteudo, Data = DateTime.Now.ToString("hh:mm:ss"), Id = idMsg, Usuario = usuario });
+
+            HttpContext.Current.Session.Remove("usuario");
+        }*/
 
         return msgs;
     }

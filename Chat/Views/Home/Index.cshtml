@@ -31,21 +31,22 @@
 <p>
     Nome: <br /><input type="text" name="txtNome" id="txtNome" />
 </p>
-
-<ul id="chatList">
-    @foreach (var msg in Model.Mensagens)
-    { 
-        <li>
-            <p style="margin-bottom: -2px; color: black;"> 
-            (@msg.Data) <strong><img src=@msg.Usuario.avatar /> @msg.Usuario.Nome</strong> :  @msg.Conteudo</p>
-        </li>
-    }
-</ul>
-<!-- jQuery Template novas mensagens -->
-<script id="msgTmpl" type="text/x-jquery-tmpl">
-    <li><p style="margin-bottom:-2px; color: black;">(${Data}) <strong> <img src=${Usuario.avatar} /> ${Usuario.Nome}</strong> : ${Conteudo}</p></li>
-</script>
-<p>
+<div id="rolagem">
+    <ul id="chatList">
+        @foreach (var msg in Model.Mensagens)
+        { 
+            <li>
+                <p style="margin-bottom: -2px; color: black;"> 
+                (@msg.Data) <strong><img src=@msg.Usuario.avatar /> @msg.Usuario.Nome</strong> :  @msg.Conteudo</p>
+            </li>
+        }
+    </ul>
+    <!-- jQuery Template novas mensagens -->
+    <script id="msgTmpl" type="text/x-jquery-tmpl">
+        <li><p style="margin-bottom:-2px; color: black;">(${Data}) <strong> <img src=${Usuario.avatar} /> ${Usuario.Nome}</strong> : ${Conteudo}</p></li>
+    </script>
+    <p>
+</div>
     Mensagem:<br />
     <input type="text" name="txtMensagem" id="txtMensagem" />
     <input id="btnEnviar" type="submit" value="enviar" /><br />

@@ -343,3 +343,12 @@ div#title
 {
     width: 6em;
 }
+
+#rolagem {
+display:block;
+width:600px;
+height:230px;
+border:1px solid #cccccc;
+background-color:#ffffff;
+overflow:auto;
+}
